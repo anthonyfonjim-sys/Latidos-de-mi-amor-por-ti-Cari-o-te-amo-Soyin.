@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Soyin Cariño: Mi Promesa con lo nuestro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Cinzel:wght@400;700&family=Quicksand:wght@300;400;600&family=Lora:italic,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --soft-rose: #f4d3d9;
+            --deep-gold: #c5a059;
+            --warm-white: #fffafb;
+            --heart-red: #d63031;
+        }
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: #121011;
+            color: #4a4a4a;
+            margin: 0;
+            overflow: hidden;
+            transition: background-color 2s ease;
+        }
+        .cursive { font-family: 'Dancing Script', cursive; }
+        .elegant { font-family: 'Great Vibes', cursive; }
+        .serif { font-family: 'Lora', serif; }
+        .commitment { font-family: 'Cinzel', serif; letter-spacing: 3px; }
+        
+        /* Pantalla de Inicio - La Puerta al Corazón */
+        #intro-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, #1a1a1a, #000);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            transition: all 2s ease;
+        }
+
+        .intro-content {
+            max-width: 700px;
+            text-align: center;
+            color: #f3e5e5;
+            animation: softFadeIn 3s ease;
+        }
+
+        @keyframes softFadeIn {
+            from { opacity: 0; transform: translateY(20px); filter: blur(5px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        .gold-text {
+            background: linear-gradient(to right, #c5a059, #f9f1d0, #c5a059);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
+        }
+
+        /* Contenedor de Vidrio */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+        }
+
+        /* Corazones y Pétalos */
+        .heart-float {
+            position: fixed;
+            pointer-events: none;
+            z-index: 0;
+            animation: floatUp 12s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(110vh) rotate(0deg) scale(0.5); opacity: 0; }
+            10% { opacity: 0.5; }
+            90% { opacity: 0.5; }
+            100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        .btn-enter {
+            position: relative;
+            background: none;
+            border: 1px solid var(--deep-gold);
+            color: var(--deep-gold);
+            padding: 15px 50px;
+            border-radius: 100px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            z-index: 1;
+        }
+        .btn-enter:hover {
+            background: var(--deep-gold);
+            color: white;
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.4);
+        }
+
+        #main-content {
+            opacity: 0;
+            transition: opacity 3s ease;
+            background: linear-gradient(135deg, #fffafa 0%, #f9ebed 100%);
+            min-height: 100vh;
+            visibility: hidden;
+        }
+
+        /* Animación Latido para el Contador */
+        .heartbeat {
+            animation: heartbeat 2s infinite;
+        }
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            5% { transform: scale(1.05); }
+            10% { transform: scale(1); }
+            15% { transform: scale(1.1); }
+            30% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Audio: Piano Suave y Profundo -->
+    <audio id="bg-music" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- INTRODUCCIÓN EMOCIONAL -->
+    <div id="intro-overlay">
+        <div class="intro-content space-y-10">
+            <h2 class="commitment gold-text text-3xl">Mi Promesa a Ti</h2>
+            <div class="serif italic text-xl md:text-2xl leading-relaxed space-y-6 px-4">
+                <p>Cariño, reconozco con el alma abierta que mi falta de madurez nos trajo sombras que no merecías.</p>
+                <p>Entiendo tus miedos y las dudas que hoy habitan en tu corazón. Solo quiero decirte que mi compromiso es genuino me importas.</p>
+                <p>Lucharé por nosotros, con disciplina de quien sabe que tiene el tesoro más grande del mundo. Estaré aquí, constante, dándote la seguridad que necesitas para volver a creer en nosotros con constancia con acciones.</p>
+                <p class="gold-text not-italic text-lg tracking-widest uppercase">Este espacio es el reflejo de mi nuevo camino contigo.</p>
+            </div>
+            <button onclick="enterSpace()" class="btn-enter uppercase tracking-[4px] text-xs">Entrar a mi corazón</button>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div id="main-content" class="p-6 md:p-12">
+        <div id="hearts-layer"></div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
+            
+            <!-- HEADER -->
+            <header class="text-center mb-24">
+                <h1 class="elegant text-8xl md:text-9xl text-pink-900 mb-4 drop-shadow-sm">Para ti, mi Soyin cariño</h1>
+                <div class="flex items-center justify-center gap-6">
+                    <div class="h-[1px] w-16 bg-gold-text opacity-50"></div>
+                    <p class="commitment text-pink-800 text-sm opacity-80">Amor • Disciplina • Seguridad</p>
+                    <div class="h-[1px] w-16 bg-gold-text opacity-50"></div>
+                </div>
+            </header>
+
+            <!-- CONTADOR DE HISTORIA -->
+            <section class="glass-card p-10 md:p-20 mb-32 text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold-text to-transparent"></div>
+                <h2 class="commitment text-gray-400 text-xs mb-12 uppercase">El tiempo que hemos construido</h2>
+                
+                <div id="timer" class="flex flex-wrap justify-center gap-8 md:gap-12">
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 md:w-36 md:h-36 flex items-center justify-center rounded-full bg-white/60 shadow-inner border border-white">
+                            <span id="months" class="text-4xl md:text-6xl font-light text-pink-900">0</span>
+                        </div>
+                        <span class="commitment text-[10px] mt-6 text-pink-700">Meses</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 md:w-36 md:h-36 flex items-center justify-center rounded-full bg-white/60 shadow-inner border border-white">
+                            <span id="days" class="text-4xl md:text-6xl font-light text-pink-900">0</span>
+                        </div>
+                        <span class="commitment text-[10px] mt-6 text-pink-700">Días</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 md:w-36 md:h-36 flex items-center justify-center rounded-full bg-white/60 shadow-inner border border-white">
+                            <span id="hours" class="text-4xl md:text-6xl font-light text-pink-900">0</span>
+                        </div>
+                        <span class="commitment text-[10px] mt-6 text-pink-700">Horas</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="w-24 h-24 md:w-36 md:h-36 flex items-center justify-center rounded-full border-2 border-pink-400 bg-white/90 shadow-xl heartbeat">
+                            <span id="seconds" class="text-4xl md:text-6xl font-bold text-pink-600">0</span>
+                        </div>
+                        <span class="commitment text-[10px] mt-6 text-pink-600 font-bold uppercase">Segundos de amor</span>
+                    </div>
+                </div>
+                <p class="serif italic text-pink-500 mt-16 text-xl">Desde aquel 17 de Diciembre del 2025...</p>
+            </section>
+
+            <!-- PILARES DE MI COMPROMISO -->
+            <div class="mb-40">
+                <h3 class="elegant text-6xl md:text-7xl text-center text-pink-950 mb-20">Mis Pilares para ti</h3>
+                <div id="fixed-messages" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                    <!-- Se llena con JS -->
+                </div>
+            </div>
+
+            <!-- SUSURROS DIARIOS -->
+            <section class="max-w-5xl mx-auto glass-card p-12 md:p-24 text-center mb-32 relative">
+                <h3 class="elegant text-6xl text-pink-950 mb-12">Mensajes de mi alma para ti en este día Cariño </h3>
+                <div id="soul-message-container" class="space-y-12">
+                    <div class="relative inline-block group">
+                        <div class="absolute inset-0 bg-pink-200 blur-2xl opacity-30 group-hover:opacity-50 transition"></div>
+                        <img id="soul-image" src="https://images.unsplash.com/photo-1518199266791-739d6ff26dfa?q=80&w=800" class="relative max-w-full h-[400px] object-cover rounded-3xl shadow-2xl border-[15px] border-white transition-all duration-700" alt="Recuerdo">
+                    </div>
+                    <p id="soul-text" class="serif italic text-2xl md:text-4xl text-gray-700 leading-relaxed max-w-3xl mx-auto px-4 transition-opacity duration-500">
+                        Cada día este espacio cambiará, como cambia mi alma para darte lo mejor de mí...
+                    </p>
+                    <button onclick="updateSoulMessage()" class="btn-enter uppercase tracking-[4px] text-xs">Escuchar mi alma</button>
+                </div>
+            </section>
+
+            <!-- FOOTER FINAL -->
+            <footer class="mt-60 text-center pb-32">
+                <div class="flex justify-center items-center gap-10 mb-12 opacity-50">
+                    <div class="h-[1px] w-40 bg-gradient-to-l from-pink-800 to-transparent"></div>
+                    <span class="text-2xl">🌹</span>
+                    <div class="h-[1px] w-40 bg-gradient-to-r from-pink-800 to-transparent"></div>
+                </div>
+                <h2 class="elegant text-6xl md:text-8xl text-pink-950 mb-6 leading-tight">Hecho con todo mi amor para ti cariño te amo</h2>
+                <p class="commitment text-pink-800/60 text-xs tracking-[5px] uppercase">Disciplina • Constancia • Eternidad — 2026</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        const START_DATE = new Date('2025-12-17T00:00:00');
+
+        function enterSpace() {
+            const music = document.getElementById('bg-music');
+            music.volume = 0.4;
+            music.play().catch(e => console.log("Audio requires interaction."));
+            
+            document.getElementById('intro-overlay').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('intro-overlay').style.display = 'none';
+                const main = document.getElementById('main-content');
+                main.style.visibility = 'visible';
+                main.style.opacity = '1';
+                document.body.style.overflowY = 'auto';
+                document.body.style.backgroundColor = '#fffafa';
+            }, 2000);
+        }
+
+        const pilares = [
+            { id: 1, title: "Refugio", emoji: "🏠", msg: "Seré el hogar donde tu corazón siempre se sienta a salvo.", img: "https://images.unsplash.com/photo-1516108317508-6788f6a160e9?auto=format&fit=crop&w=400" },
+            { id: 2, title: "Promesa", emoji: "🕯️", msg: "Mi palabra es hoy mi acción más valiosa. No te fallaré.", img: "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=400" },
+            { id: 3, title: "Luz", emoji: "🌟", msg: "Lucharé contra cualquier sombra para que vuelvas a brillar.", img: "https://images.unsplash.com/photo-1494972308805-463bc619d34e?auto=format&fit=crop&w=400" },
+            { id: 4, title: "Calma", emoji: "🌊", msg: "Deseo llegar a darte muchos abrazos y que en esos momentos te sientas segura y tengas paz.", img: "https://images.unsplash.com/photo-1454486585304-34d3ab148aa2?auto=format&fit=crop&w=400" },
+            { id: 5, title: "Lealtad", emoji: "🦅", msg: "Quiero llegar a caminar tu lado, juntos sin soltarte, en cada paso de nuestra historia.", img: "https://images.unsplash.com/photo-1518199266791-739d6ff26dfa?auto=format&fit=crop&w=400" },
+            { id: 6, title: "Respeto", emoji: "🐚", msg: "Honraré cada una de tus emociones con paciencia y amor.", img: "https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=400" },
+            { id: 7, title: "Unión", emoji: "💞", msg: "Tú y yo, bajo el mismo cielo, con el mismo propósito: Nosotros.", img: "https://images.unsplash.com/photo-1518895949257-7621c3c786d7?auto=format&fit=crop&w=400" }
+        ];
+
+        const soulMessages = [
+            { text: "Soyin, eres la mujer que me enseñó que el amor es una decisión que se toma cada mañana.", img: "https://images.unsplash.com/photo-1516589174184-c68d8e514a48?auto=format&fit=crop&w=600" },
+            { text: "Cada duda tuya la responderé con actos de servicio y amor puro.", img: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&w=600" },
+            { text: "Amo tu corazón, incluso cuando tiene miedo. Estoy aquí para cuidarlo ahora como se debe me importas que estés bien.", img: "https://images.unsplash.com/photo-1501901664534-5ad706537a88?auto=format&fit=crop&w=600" },
+            { text: "Mi disciplina diaria es el combustible de nuestra nueva historia.", img: "https://images.unsplash.com/photo-1490730141103-6cac27aaab94?auto=format&fit=crop&w=600" }
+        ];
+
+        function initPilares() {
+            const container = document.getElementById('fixed-messages');
+            pilares.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "group h-80 cursor-pointer [perspective:1000px]";
+                card.onclick = () => card.querySelector('.card-inner').classList.toggle('[transform:rotateY(180deg)]');
+                card.innerHTML = `
+                    <div class="card-inner relative w-full h-full transition-transform duration-700 [transform-style:preserve-3d]">
+                        <div class="absolute inset-0 [backface-visibility:hidden] glass-card p-6 flex flex-col items-center justify-center text-center border-b-4 border-gold-text/30">
+                            <span class="text-5xl mb-6 grayscale group-hover:grayscale-0 transition duration-500">${item.emoji}</span>
+                            <h4 class="commitment text-sm font-bold text-pink-900">${item.title}</h4>
+                            <p class="text-[10px] mt-4 opacity-40 uppercase tracking-widest">Toca mi alma</p>
+                        </div>
+                        <div class="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] glass-card p-4 flex flex-col items-center justify-center text-center">
+                            <img src="${item.img}" class="w-full h-32 object-cover rounded-2xl mb-6 grayscale hover:grayscale-0 transition duration-500 shadow-md">
+                            <p class="serif italic text-sm text-gray-800 leading-relaxed px-2">"${item.msg}"</p>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function updateTimer() {
+            const now = new Date();
+            const diff = now - START_DATE;
+            const seconds = Math.floor((diff / 1000) % 60);
+            const minutes = Math.floor((diff / 1000 / 60) % 60);
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const daysTotal = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const months = Math.floor(daysTotal / 30.44);
+            const days = Math.floor(daysTotal % 30.44);
+
+            document.getElementById('months').innerText = months;
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('seconds').innerText = seconds;
+        }
+
+        function updateSoulMessage() {
+            const textEl = document.getElementById('soul-text');
+            const imgEl = document.getElementById('soul-image');
+            const random = soulMessages[Math.floor(Math.random() * soulMessages.length)];
+            textEl.style.opacity = '0';
+            imgEl.style.opacity = '0';
+            setTimeout(() => {
+                textEl.innerText = `"${random.text}"`;
+                imgEl.src = random.img;
+                textEl.style.opacity = '1';
+                imgEl.style.opacity = '1';
+            }, 600);
+        }
+
+        function spawnHeart() {
+            const layer = document.getElementById('hearts-layer');
+            const heart = document.createElement('div');
+            heart.className = 'heart-float';
+            const size = Math.random() * 20 + 8;
+            heart.innerHTML = `<span style="font-size: ${size}px; color: rgba(214, 48, 49, 0.2)">❤</span>`;
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 8 + 8) + 's';
+            layer.appendChild(heart);
+            setTimeout(() => heart.remove(), 15000);
+        }
+
+        window.onload = () => {
+            initPilares();
+            setInterval(updateTimer, 1000);
+            setInterval(spawnHeart, 800);
+            updateTimer();
+        };
+    </script>
+</body>
+</html>
